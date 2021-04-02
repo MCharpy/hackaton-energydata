@@ -1,5 +1,6 @@
 import numpy as np
 import pickle
+import sys
 
 def read_int(f):
     ba = bytearray(4)
@@ -44,11 +45,12 @@ classifier = pickle.load(open("./KNN_model.sav",'rb'))
 sc_X = pickle.load(open("./scaling_function.sav",'rb'))
 
 
-##############  CHANGE THIS PATH TO TEST ON ANOTHER SIGNAL ###############
 # Loading the signal
-input_file = "../data/pics_LOGINMDP.bin"
+input_file = sys.argv[1]
 input, info = get_pics_from_file(input_file)
 
+
+print("Running on " + input_file)
 # Average value of NOKEY
 pics_nokey, info = get_pics_from_file("../data/pics_NOKEY.bin")
 nokey = np.mean(pics_nokey,axis=0)
